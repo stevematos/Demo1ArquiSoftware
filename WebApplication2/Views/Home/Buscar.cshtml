@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Buscar tu venta";
+}
+<h2>@ViewBag.Title.</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <h3>@ViewBag.Message2</h3>
+        @using (Html.BeginForm("Buscar2", "Home")) 
+        {
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <input type="text" name="fecha" class="form-control">
+                    <button class="btn btn-default" type="submit">Buscar</button>
+                </span>
+            </div>
+        </div>
+        }
+        <table class="table table-inverse">
+            <thead>
+                <tr>
+                    <th>ID VENTA</th>
+                    <th>EMPLEADO</th>
+                    <th>DISTRITO</th>
+                    <th>METODO DE PAGO</th>
+                    <th>FECHA DE VENTA</th>
+                    <th>MONTO DADO</th>
+                    <th>CAMBIO</th>
+                    <th>MONTO A PAGAR</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (List<WebApplication2.Models.SALE>)ViewBag.listadofecha)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID_SALE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EMPLOYEE.FATHER_LASTNAME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BRANCH.DISTRICT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PAYMENT_METHOD.METHOD)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SALE_DATE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GIVEN_AMOUNT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CHANGE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PAY_AMOUNT)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+    </div>
+    <div class="col-md-4">
+        <h3>@ViewBag.Message3</h3>
+        @using (Html.BeginForm("Buscar3", "Home"))
+        {
+        <div class="col-lg-6">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <input type="text" name="idempleado" class="form-control">
+                    <button class="btn btn-default" type="submit">Buscar</button>
+                </span>
+            </div>
+        </div>
+        }
+        <table class="table table-inverse">
+            <thead>
+                <tr>
+
+                    <th>ID VENTA</th>
+                    <th>EMPLEADO</th>
+                    <th>DISTRITO</th>
+                    <th>METODO DE PAGO</th>
+                    <th>FECHA DE VENTA</th>
+                    <th>MONTO DADO</th>
+                    <th>CAMBIO</th>
+                    <th>MONTO A PAGAR</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (List<WebApplication2.Models.SALE>)ViewBag.listadoempleado)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID_SALE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EMPLOYEE.FATHER_LASTNAME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BRANCH.DISTRICT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PAYMENT_METHOD.METHOD)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SALE_DATE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GIVEN_AMOUNT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CHANGE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PAY_AMOUNT)
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+
+    </div>
+</div>
+

@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Administrador";
+}
+
+<div class="jumbotron">
+    <h1>BODEGA</h1>
+    <p>Empresa dedicada a la venta de diversos productos por ejemplo galletas,gaseosas,arroz,leche entre otros más.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Ofertas del dia</h2>
+        <table class="table table-inverse">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Costo Unitario</th>
+                    <th>Categoria</th>
+                    <th>Marca</th>
+                    <th>Fecha de expiracion</th>
+                    <th>Oferta</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (List<WebApplication2.Models.OFFER>)ViewBag.listaoferta)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PRODUCT.ID_PRODUCT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PRODUCT.PRODUCT_NAME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PRODUCT.UNIT_COST)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PRODUCT.CATEGORY.CATEGORY_NAME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PRODUCT.BRAND)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PRODUCT.EXPIRATION_DATE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OFFER1)
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+        <h2>Monto total ventas</h2>
+        <h3>
+            <span class="label label-default">@ViewBag.total</span>
+        </h3>
+    </div>
+</div>

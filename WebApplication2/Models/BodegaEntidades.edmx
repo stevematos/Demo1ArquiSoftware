@@ -1,0 +1,1054 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ASSISTANCE">
+          <Key>
+            <PropertyRef Name="ID_ASSISTANCE" />
+          </Key>
+          <Property Name="ID_ASSISTANCE" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_EMPLOYEE" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="DATE" Type="date" Nullable="false" />
+          <Property Name="EXIT_HOUR" Type="date" Nullable="false" />
+          <Property Name="ENTRY_HOUR" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BRANCH">
+          <Key>
+            <PropertyRef Name="ID_BRANCH" />
+          </Key>
+          <Property Name="ID_BRANCH" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ADDRESS" Type="varchar2" MaxLength="120" Nullable="false" />
+          <Property Name="DISTRICT" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="ID_CATEGORY" />
+          </Key>
+          <Property Name="ID_CATEGORY" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CATEGORY_NAME" Type="varchar2" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="DETAIL">
+          <Key>
+            <PropertyRef Name="ID_PRODUCT" />
+            <PropertyRef Name="ID_SALE" />
+          </Key>
+          <Property Name="ID_PRODUCT" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="ID_SALE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="QUANTITY" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SALE_PRICE" Type="number" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="DISCOUNT" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="ID_EMPLOYEE" />
+          </Key>
+          <Property Name="ID_EMPLOYEE" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="ID_TURN" Type="number" Precision="38" Scale="0" />
+          <Property Name="MOTHER_LASTNAME" Type="varchar2" MaxLength="15" Nullable="false" />
+          <Property Name="FATHER_LASTNAME" Type="varchar2" MaxLength="15" Nullable="false" />
+          <Property Name="UBIGEO" Type="varchar2" MaxLength="6" Nullable="false" />
+          <Property Name="TELEPHONE" Type="varchar2" MaxLength="11" Nullable="false" />
+          <Property Name="TYPE" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="PHOTO" Type="blob" />
+          <Property Name="E_MAIL" Type="varchar2" MaxLength="35" Nullable="false" />
+          <Property Name="PASSWORD" Type="char" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE_BRANCH">
+          <Key>
+            <PropertyRef Name="ID_EMPLOYEE_BRANCH" />
+          </Key>
+          <Property Name="ID_EMPLOYEE" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="ID_BRANCH" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_EMPLOYEE_BRANCH" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="HIRE_DATE" Type="date" Nullable="false" />
+          <Property Name="DISMISS_DATE" Type="date" />
+        </EntityType>
+        <EntityType Name="INCLUDE">
+          <Key>
+            <PropertyRef Name="ID_PRODUCT" />
+            <PropertyRef Name="ID_REQUEST" />
+          </Key>
+          <Property Name="ID_PRODUCT" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="ID_REQUEST" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="QUANTITY" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OFFER">
+          <Key>
+            <PropertyRef Name="ID_OFFER" />
+          </Key>
+          <Property Name="ID_OFFER" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_PRODUCT" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="OFFER" Type="varchar2" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="PAYMENT_METHOD">
+          <Key>
+            <PropertyRef Name="ID_PAYMENT_METHOD" />
+          </Key>
+          <Property Name="ID_PAYMENT_METHOD" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="METHOD" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="ID_PRODUCT" />
+          </Key>
+          <Property Name="ID_PRODUCT" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="ID_CATEGORY" Type="number" Precision="38" Scale="0" />
+          <Property Name="PRODUCT_NAME" Type="varchar2" MaxLength="35" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="128" Nullable="false" />
+          <Property Name="UNIT_COST" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="STOCK" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="BRAND" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="EXPIRATION_DATE" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="REQUEST">
+          <Key>
+            <PropertyRef Name="ID_REQUEST" />
+          </Key>
+          <Property Name="ID_REQUEST" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ID_SUPPLIER" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="ID_EMPLOYEE" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="REQUEST_DATE" Type="date" Nullable="false" />
+          <Property Name="DELIVERY_DATE" Type="date" />
+          <Property Name="CONFORMITY" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TOTAL_AMOUNT" Type="number" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="UNIT_NUMBER" Type="varchar2" MaxLength="30" Nullable="false" />
+          <Property Name="REPRESENTATIVE" Type="varchar2" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SALE">
+          <Key>
+            <PropertyRef Name="ID_SALE" />
+          </Key>
+          <Property Name="ID_SALE" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="ID_EMPLOYEE" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="ID_BRANCH" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_PAYMENT_METHOD" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SALE_DATE" Type="date" Nullable="false" />
+          <Property Name="GIVEN_AMOUNT" Type="number" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="CHANGE" Type="number" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="PAY_AMOUNT" Type="number" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="SUPPLIER">
+          <Key>
+            <PropertyRef Name="ID_SUPPLIER" />
+          </Key>
+          <Property Name="ID_SUPPLIER" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="SUPPLIER_NAME" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="SUPPLIER_ADDRESS" Type="varchar2" MaxLength="50" Nullable="false" />
+          <Property Name="SUPPLIER_TELEPHONE" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="SUPPLIEE_RUC" Type="char" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TURN">
+          <Key>
+            <PropertyRef Name="ID_TURN" />
+          </Key>
+          <Property Name="ID_TURN" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TURN" Type="varchar2" MaxLength="20" Nullable="false" />
+          <Property Name="START_HOUR" Type="date" Nullable="false" />
+          <Property Name="END_HOUR" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ASSISTAN_MARKS_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="ASSISTANCE" Type="Self.ASSISTANCE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Principal>
+            <Dependent Role="ASSISTANCE">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETAIL_CONTAINS_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="DETAIL" Type="Self.DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Principal>
+            <Dependent Role="DETAIL">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETAIL_CONTAINS2_SALE">
+          <End Role="SALE" Type="Self.SALE" Multiplicity="1" />
+          <End Role="DETAIL" Type="Self.DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALE">
+              <PropertyRef Name="ID_SALE" />
+            </Principal>
+            <Dependent Role="DETAIL">
+              <PropertyRef Name="ID_SALE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_WORK_TURN">
+          <End Role="TURN" Type="Self.TURN" Multiplicity="0..1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TURN">
+              <PropertyRef Name="ID_TURN" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="ID_TURN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_WORKED_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="EMPLOYEE_BRANCH" Type="Self.EMPLOYEE_BRANCH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Principal>
+            <Dependent Role="EMPLOYEE_BRANCH">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_WORKS_BRANCH">
+          <End Role="BRANCH" Type="Self.BRANCH" Multiplicity="1" />
+          <End Role="EMPLOYEE_BRANCH" Type="Self.EMPLOYEE_BRANCH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BRANCH">
+              <PropertyRef Name="ID_BRANCH" />
+            </Principal>
+            <Dependent Role="EMPLOYEE_BRANCH">
+              <PropertyRef Name="ID_BRANCH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INCLUDE_PIDE_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="INCLUDE" Type="Self.INCLUDE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Principal>
+            <Dependent Role="INCLUDE">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INCLUDE_PIDE2_REQUEST">
+          <End Role="REQUEST" Type="Self.REQUEST" Multiplicity="1" />
+          <End Role="INCLUDE" Type="Self.INCLUDE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUEST">
+              <PropertyRef Name="ID_REQUEST" />
+            </Principal>
+            <Dependent Role="INCLUDE">
+              <PropertyRef Name="ID_REQUEST" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OFFER_HAS2_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="OFFER" Type="Self.OFFER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Principal>
+            <Dependent Role="OFFER">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_BELONGS_CATEGORY">
+          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="0..1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="ID_CATEGORY" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="ID_CATEGORY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUEST_MAKES_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="REQUEST" Type="Self.REQUEST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Principal>
+            <Dependent Role="REQUEST">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUEST_REQUESTS__SUPPLIER">
+          <End Role="SUPPLIER" Type="Self.SUPPLIER" Multiplicity="1" />
+          <End Role="REQUEST" Type="Self.REQUEST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUPPLIER">
+              <PropertyRef Name="ID_SUPPLIER" />
+            </Principal>
+            <Dependent Role="REQUEST">
+              <PropertyRef Name="ID_SUPPLIER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SALE_IS_SOLD_BRANCH">
+          <End Role="BRANCH" Type="Self.BRANCH" Multiplicity="1" />
+          <End Role="SALE" Type="Self.SALE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BRANCH">
+              <PropertyRef Name="ID_BRANCH" />
+            </Principal>
+            <Dependent Role="SALE">
+              <PropertyRef Name="ID_BRANCH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SALE_PAID_BY_PAYMENT_">
+          <End Role="PAYMENT_METHOD" Type="Self.PAYMENT_METHOD" Multiplicity="1" />
+          <End Role="SALE" Type="Self.SALE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAYMENT_METHOD">
+              <PropertyRef Name="ID_PAYMENT_METHOD" />
+            </Principal>
+            <Dependent Role="SALE">
+              <PropertyRef Name="ID_PAYMENT_METHOD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SALE_SELLS_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="SALE" Type="Self.SALE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Principal>
+            <Dependent Role="SALE">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="FUNCTION_MORE_SALES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="STEVE" ReturnType="number">
+          <Parameter Name="NUM" Type="number" Mode="In" />
+        </Function>
+        <Function Name="PRODUCT_MORE_SALES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="STEVE">
+          <Parameter Name="P_NUMBER" Type="number" Mode="In" />
+        </Function>
+        <Function Name="SALE_HISTORY_BY_EMPLOYEE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="STEVE">
+          <Parameter Name="P_ID_EMPLOYEE" Type="char" Mode="In" />
+          <Parameter Name="P_SALE_DATE" Type="date" Mode="Out" />
+          <Parameter Name="P_PAY_AMOUNT" Type="number" Mode="Out" />
+          <Parameter Name="P_ID_METHOD" Type="number" Mode="Out" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="ASSISTANCE" EntityType="Self.ASSISTANCE" Schema="STEVE" store:Type="Tables" />
+          <EntitySet Name="BRANCH" EntityType="Self.BRANCH" Schema="STEVE" store:Type="Tables" />
+          <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="STEVE" store:Type="Tables" />
+          <EntitySet Name="DETAIL" EntityType="Self.DETAIL" Schema="STEVE" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="STEVE" store:Type="Tables" />
+          <EntitySet Name="EMPLOYEE_BRANCH" EntityType="Self.EMPLOYEE_BRANCH" Schema="STEVE" store:Type="Tables" />
+          <EntitySet Name="INCLUDE" EntityType="Self.INCLUDE" Schema="STEVE" store:Type="Tables" />
+          <EntitySet Name="OFFER" EntityType="Self.OFFER" Schema="STEVE" store:Type="Tables" />
+          <EntitySet Name="PAYMENT_METHOD" EntityType="Self.PAYMENT_METHOD" Schema="STEVE" store:Type="Tables" />
+          <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="STEVE" store:Type="Tables" />
+          <EntitySet Name="REQUEST" EntityType="Self.REQUEST" Schema="STEVE" store:Type="Tables" />
+          <EntitySet Name="SALE" EntityType="Self.SALE" Schema="STEVE" store:Type="Tables" />
+          <EntitySet Name="SUPPLIER" EntityType="Self.SUPPLIER" Schema="STEVE" store:Type="Tables" />
+          <EntitySet Name="TURN" EntityType="Self.TURN" Schema="STEVE" store:Type="Tables" />
+          <AssociationSet Name="FK_ASSISTAN_MARKS_EMPLOYEE" Association="Self.FK_ASSISTAN_MARKS_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="ASSISTANCE" EntitySet="ASSISTANCE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETAIL_CONTAINS_PRODUCT" Association="Self.FK_DETAIL_CONTAINS_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="DETAIL" EntitySet="DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETAIL_CONTAINS2_SALE" Association="Self.FK_DETAIL_CONTAINS2_SALE">
+            <End Role="SALE" EntitySet="SALE" />
+            <End Role="DETAIL" EntitySet="DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_WORK_TURN" Association="Self.FK_EMPLOYEE_WORK_TURN">
+            <End Role="TURN" EntitySet="TURN" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_WORKED_EMPLOYEE" Association="Self.FK_EMPLOYEE_WORKED_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="EMPLOYEE_BRANCH" EntitySet="EMPLOYEE_BRANCH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_WORKS_BRANCH" Association="Self.FK_EMPLOYEE_WORKS_BRANCH">
+            <End Role="BRANCH" EntitySet="BRANCH" />
+            <End Role="EMPLOYEE_BRANCH" EntitySet="EMPLOYEE_BRANCH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INCLUDE_PIDE_PRODUCT" Association="Self.FK_INCLUDE_PIDE_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="INCLUDE" EntitySet="INCLUDE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INCLUDE_PIDE2_REQUEST" Association="Self.FK_INCLUDE_PIDE2_REQUEST">
+            <End Role="REQUEST" EntitySet="REQUEST" />
+            <End Role="INCLUDE" EntitySet="INCLUDE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OFFER_HAS2_PRODUCT" Association="Self.FK_OFFER_HAS2_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="OFFER" EntitySet="OFFER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_BELONGS_CATEGORY" Association="Self.FK_PRODUCT_BELONGS_CATEGORY">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUEST_MAKES_EMPLOYEE" Association="Self.FK_REQUEST_MAKES_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="REQUEST" EntitySet="REQUEST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUEST_REQUESTS__SUPPLIER" Association="Self.FK_REQUEST_REQUESTS__SUPPLIER">
+            <End Role="SUPPLIER" EntitySet="SUPPLIER" />
+            <End Role="REQUEST" EntitySet="REQUEST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SALE_IS_SOLD_BRANCH" Association="Self.FK_SALE_IS_SOLD_BRANCH">
+            <End Role="BRANCH" EntitySet="BRANCH" />
+            <End Role="SALE" EntitySet="SALE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SALE_PAID_BY_PAYMENT_" Association="Self.FK_SALE_PAID_BY_PAYMENT_">
+            <End Role="PAYMENT_METHOD" EntitySet="PAYMENT_METHOD" />
+            <End Role="SALE" EntitySet="SALE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SALE_SELLS_EMPLOYEE" Association="Self.FK_SALE_SELLS_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="SALE" EntitySet="SALE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ASSISTANCE">
+          <Key>
+            <PropertyRef Name="ID_ASSISTANCE" />
+          </Key>
+          <Property Name="ID_ASSISTANCE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_EMPLOYEE" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="DATE" Type="DateTime" Nullable="false" />
+          <Property Name="EXIT_HOUR" Type="DateTime" Nullable="false" />
+          <Property Name="ENTRY_HOUR" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_ASSISTAN_MARKS_EMPLOYEE" FromRole="ASSISTANCE" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="BRANCH">
+          <Key>
+            <PropertyRef Name="ID_BRANCH" />
+          </Key>
+          <Property Name="ID_BRANCH" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DISTRICT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEE_BRANCH" Relationship="Self.FK_EMPLOYEE_WORKS_BRANCH" FromRole="BRANCH" ToRole="EMPLOYEE_BRANCH" />
+          <NavigationProperty Name="SALE" Relationship="Self.FK_SALE_IS_SOLD_BRANCH" FromRole="BRANCH" ToRole="SALE" />
+        </EntityType>
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="ID_CATEGORY" />
+          </Key>
+          <Property Name="ID_CATEGORY" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="CATEGORY_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.FK_PRODUCT_BELONGS_CATEGORY" FromRole="CATEGORY" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="DETAIL">
+          <Key>
+            <PropertyRef Name="ID_PRODUCT" />
+            <PropertyRef Name="ID_SALE" />
+          </Key>
+          <Property Name="ID_PRODUCT" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ID_SALE" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="QUANTITY" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SALE_PRICE" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="DISCOUNT" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.FK_DETAIL_CONTAINS_PRODUCT" FromRole="DETAIL" ToRole="PRODUCT" />
+          <NavigationProperty Name="SALE" Relationship="Self.FK_DETAIL_CONTAINS2_SALE" FromRole="DETAIL" ToRole="SALE" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="ID_EMPLOYEE" />
+          </Key>
+          <Property Name="ID_EMPLOYEE" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ID_TURN" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="MOTHER_LASTNAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FATHER_LASTNAME" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UBIGEO" Type="String" MaxLength="6" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TELEPHONE" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TYPE" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PHOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="E_MAIL" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="128" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ASSISTANCE" Relationship="Self.FK_ASSISTAN_MARKS_EMPLOYEE" FromRole="EMPLOYEE" ToRole="ASSISTANCE" />
+          <NavigationProperty Name="TURN" Relationship="Self.FK_EMPLOYEE_WORK_TURN" FromRole="EMPLOYEE" ToRole="TURN" />
+          <NavigationProperty Name="EMPLOYEE_BRANCH" Relationship="Self.FK_EMPLOYEE_WORKED_EMPLOYEE" FromRole="EMPLOYEE" ToRole="EMPLOYEE_BRANCH" />
+          <NavigationProperty Name="REQUEST" Relationship="Self.FK_REQUEST_MAKES_EMPLOYEE" FromRole="EMPLOYEE" ToRole="REQUEST" />
+          <NavigationProperty Name="SALE" Relationship="Self.FK_SALE_SELLS_EMPLOYEE" FromRole="EMPLOYEE" ToRole="SALE" />
+        </EntityType>
+        <EntityType Name="EMPLOYEE_BRANCH">
+          <Key>
+            <PropertyRef Name="ID_EMPLOYEE_BRANCH" />
+          </Key>
+          <Property Name="ID_EMPLOYEE" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ID_BRANCH" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_EMPLOYEE_BRANCH" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="HIRE_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="DISMISS_DATE" Type="DateTime" />
+          <NavigationProperty Name="BRANCH" Relationship="Self.FK_EMPLOYEE_WORKS_BRANCH" FromRole="EMPLOYEE_BRANCH" ToRole="BRANCH" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_EMPLOYEE_WORKED_EMPLOYEE" FromRole="EMPLOYEE_BRANCH" ToRole="EMPLOYEE" />
+        </EntityType>
+        <EntityType Name="INCLUDE">
+          <Key>
+            <PropertyRef Name="ID_PRODUCT" />
+            <PropertyRef Name="ID_REQUEST" />
+          </Key>
+          <Property Name="ID_PRODUCT" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ID_REQUEST" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="QUANTITY" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.FK_INCLUDE_PIDE_PRODUCT" FromRole="INCLUDE" ToRole="PRODUCT" />
+          <NavigationProperty Name="REQUEST" Relationship="Self.FK_INCLUDE_PIDE2_REQUEST" FromRole="INCLUDE" ToRole="REQUEST" />
+        </EntityType>
+        <EntityType Name="OFFER">
+          <Key>
+            <PropertyRef Name="ID_OFFER" />
+          </Key>
+          <Property Name="ID_OFFER" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_PRODUCT" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="OFFER1" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.FK_OFFER_HAS2_PRODUCT" FromRole="OFFER" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="PAYMENT_METHOD">
+          <Key>
+            <PropertyRef Name="ID_PAYMENT_METHOD" />
+          </Key>
+          <Property Name="ID_PAYMENT_METHOD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="METHOD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="SALE" Relationship="Self.FK_SALE_PAID_BY_PAYMENT_" FromRole="PAYMENT_METHOD" ToRole="SALE" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="ID_PRODUCT" />
+          </Key>
+          <Property Name="ID_PRODUCT" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ID_CATEGORY" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="PRODUCT_NAME" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UNIT_COST" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="UNIT_PRICE" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="STOCK" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="BRAND" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EXPIRATION_DATE" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="CATEGORY" Relationship="Self.FK_PRODUCT_BELONGS_CATEGORY" FromRole="PRODUCT" ToRole="CATEGORY" />
+          <NavigationProperty Name="DETAIL" Relationship="Self.FK_DETAIL_CONTAINS_PRODUCT" FromRole="PRODUCT" ToRole="DETAIL" />
+          <NavigationProperty Name="INCLUDE" Relationship="Self.FK_INCLUDE_PIDE_PRODUCT" FromRole="PRODUCT" ToRole="INCLUDE" />
+          <NavigationProperty Name="OFFER" Relationship="Self.FK_OFFER_HAS2_PRODUCT" FromRole="PRODUCT" ToRole="OFFER" />
+        </EntityType>
+        <EntityType Name="REQUEST">
+          <Key>
+            <PropertyRef Name="ID_REQUEST" />
+          </Key>
+          <Property Name="ID_REQUEST" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ID_SUPPLIER" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ID_EMPLOYEE" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="REQUEST_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="DELIVERY_DATE" Type="DateTime" />
+          <Property Name="CONFORMITY" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TOTAL_AMOUNT" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="UNIT_NUMBER" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="REPRESENTATIVE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_REQUEST_MAKES_EMPLOYEE" FromRole="REQUEST" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="INCLUDE" Relationship="Self.FK_INCLUDE_PIDE2_REQUEST" FromRole="REQUEST" ToRole="INCLUDE" />
+          <NavigationProperty Name="SUPPLIER" Relationship="Self.FK_REQUEST_REQUESTS__SUPPLIER" FromRole="REQUEST" ToRole="SUPPLIER" />
+        </EntityType>
+        <EntityType Name="SALE">
+          <Key>
+            <PropertyRef Name="ID_SALE" />
+          </Key>
+          <Property Name="ID_SALE" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ID_EMPLOYEE" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="ID_BRANCH" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="ID_PAYMENT_METHOD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="SALE_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="GIVEN_AMOUNT" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="CHANGE" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="PAY_AMOUNT" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="BRANCH" Relationship="Self.FK_SALE_IS_SOLD_BRANCH" FromRole="SALE" ToRole="BRANCH" />
+          <NavigationProperty Name="DETAIL" Relationship="Self.FK_DETAIL_CONTAINS2_SALE" FromRole="SALE" ToRole="DETAIL" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_SALE_SELLS_EMPLOYEE" FromRole="SALE" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="PAYMENT_METHOD" Relationship="Self.FK_SALE_PAID_BY_PAYMENT_" FromRole="SALE" ToRole="PAYMENT_METHOD" />
+        </EntityType>
+        <EntityType Name="SUPPLIER">
+          <Key>
+            <PropertyRef Name="ID_SUPPLIER" />
+          </Key>
+          <Property Name="ID_SUPPLIER" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SUPPLIER_NAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SUPPLIER_ADDRESS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SUPPLIER_TELEPHONE" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="SUPPLIEE_RUC" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="REQUEST" Relationship="Self.FK_REQUEST_REQUESTS__SUPPLIER" FromRole="SUPPLIER" ToRole="REQUEST" />
+        </EntityType>
+        <EntityType Name="TURN">
+          <Key>
+            <PropertyRef Name="ID_TURN" />
+          </Key>
+          <Property Name="ID_TURN" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TURN1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="START_HOUR" Type="DateTime" Nullable="false" />
+          <Property Name="END_HOUR" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_EMPLOYEE_WORK_TURN" FromRole="TURN" ToRole="EMPLOYEE" />
+        </EntityType>
+        <Association Name="FK_ASSISTAN_MARKS_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="ASSISTANCE" Type="Self.ASSISTANCE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Principal>
+            <Dependent Role="ASSISTANCE">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_WORKS_BRANCH">
+          <End Role="BRANCH" Type="Self.BRANCH" Multiplicity="1" />
+          <End Role="EMPLOYEE_BRANCH" Type="Self.EMPLOYEE_BRANCH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BRANCH">
+              <PropertyRef Name="ID_BRANCH" />
+            </Principal>
+            <Dependent Role="EMPLOYEE_BRANCH">
+              <PropertyRef Name="ID_BRANCH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SALE_IS_SOLD_BRANCH">
+          <End Role="BRANCH" Type="Self.BRANCH" Multiplicity="1" />
+          <End Role="SALE" Type="Self.SALE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BRANCH">
+              <PropertyRef Name="ID_BRANCH" />
+            </Principal>
+            <Dependent Role="SALE">
+              <PropertyRef Name="ID_BRANCH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_BELONGS_CATEGORY">
+          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="0..1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="ID_CATEGORY" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="ID_CATEGORY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETAIL_CONTAINS_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="DETAIL" Type="Self.DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Principal>
+            <Dependent Role="DETAIL">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DETAIL_CONTAINS2_SALE">
+          <End Role="SALE" Type="Self.SALE" Multiplicity="1" />
+          <End Role="DETAIL" Type="Self.DETAIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALE">
+              <PropertyRef Name="ID_SALE" />
+            </Principal>
+            <Dependent Role="DETAIL">
+              <PropertyRef Name="ID_SALE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_WORK_TURN">
+          <End Role="TURN" Type="Self.TURN" Multiplicity="0..1" />
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TURN">
+              <PropertyRef Name="ID_TURN" />
+            </Principal>
+            <Dependent Role="EMPLOYEE">
+              <PropertyRef Name="ID_TURN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EMPLOYEE_WORKED_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="EMPLOYEE_BRANCH" Type="Self.EMPLOYEE_BRANCH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Principal>
+            <Dependent Role="EMPLOYEE_BRANCH">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUEST_MAKES_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="REQUEST" Type="Self.REQUEST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Principal>
+            <Dependent Role="REQUEST">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SALE_SELLS_EMPLOYEE">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+          <End Role="SALE" Type="Self.SALE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Principal>
+            <Dependent Role="SALE">
+              <PropertyRef Name="ID_EMPLOYEE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INCLUDE_PIDE_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="INCLUDE" Type="Self.INCLUDE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Principal>
+            <Dependent Role="INCLUDE">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_INCLUDE_PIDE2_REQUEST">
+          <End Role="REQUEST" Type="Self.REQUEST" Multiplicity="1" />
+          <End Role="INCLUDE" Type="Self.INCLUDE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="REQUEST">
+              <PropertyRef Name="ID_REQUEST" />
+            </Principal>
+            <Dependent Role="INCLUDE">
+              <PropertyRef Name="ID_REQUEST" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OFFER_HAS2_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="OFFER" Type="Self.OFFER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Principal>
+            <Dependent Role="OFFER">
+              <PropertyRef Name="ID_PRODUCT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SALE_PAID_BY_PAYMENT_">
+          <End Role="PAYMENT_METHOD" Type="Self.PAYMENT_METHOD" Multiplicity="1" />
+          <End Role="SALE" Type="Self.SALE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PAYMENT_METHOD">
+              <PropertyRef Name="ID_PAYMENT_METHOD" />
+            </Principal>
+            <Dependent Role="SALE">
+              <PropertyRef Name="ID_PAYMENT_METHOD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_REQUEST_REQUESTS__SUPPLIER">
+          <End Role="SUPPLIER" Type="Self.SUPPLIER" Multiplicity="1" />
+          <End Role="REQUEST" Type="Self.REQUEST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUPPLIER">
+              <PropertyRef Name="ID_SUPPLIER" />
+            </Principal>
+            <Dependent Role="REQUEST">
+              <PropertyRef Name="ID_SUPPLIER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BodegaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ASSISTANCE" EntityType="Self.ASSISTANCE" />
+          <EntitySet Name="BRANCH" EntityType="Self.BRANCH" />
+          <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" />
+          <EntitySet Name="DETAIL" EntityType="Self.DETAIL" />
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" />
+          <EntitySet Name="EMPLOYEE_BRANCH" EntityType="Self.EMPLOYEE_BRANCH" />
+          <EntitySet Name="INCLUDE" EntityType="Self.INCLUDE" />
+          <EntitySet Name="OFFER" EntityType="Self.OFFER" />
+          <EntitySet Name="PAYMENT_METHOD" EntityType="Self.PAYMENT_METHOD" />
+          <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" />
+          <EntitySet Name="REQUEST" EntityType="Self.REQUEST" />
+          <EntitySet Name="SALE" EntityType="Self.SALE" />
+          <EntitySet Name="SUPPLIER" EntityType="Self.SUPPLIER" />
+          <EntitySet Name="TURN" EntityType="Self.TURN" />
+          <AssociationSet Name="FK_ASSISTAN_MARKS_EMPLOYEE" Association="Self.FK_ASSISTAN_MARKS_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="ASSISTANCE" EntitySet="ASSISTANCE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_WORKS_BRANCH" Association="Self.FK_EMPLOYEE_WORKS_BRANCH">
+            <End Role="BRANCH" EntitySet="BRANCH" />
+            <End Role="EMPLOYEE_BRANCH" EntitySet="EMPLOYEE_BRANCH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SALE_IS_SOLD_BRANCH" Association="Self.FK_SALE_IS_SOLD_BRANCH">
+            <End Role="BRANCH" EntitySet="BRANCH" />
+            <End Role="SALE" EntitySet="SALE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_BELONGS_CATEGORY" Association="Self.FK_PRODUCT_BELONGS_CATEGORY">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETAIL_CONTAINS_PRODUCT" Association="Self.FK_DETAIL_CONTAINS_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="DETAIL" EntitySet="DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DETAIL_CONTAINS2_SALE" Association="Self.FK_DETAIL_CONTAINS2_SALE">
+            <End Role="SALE" EntitySet="SALE" />
+            <End Role="DETAIL" EntitySet="DETAIL" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_WORK_TURN" Association="Self.FK_EMPLOYEE_WORK_TURN">
+            <End Role="TURN" EntitySet="TURN" />
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EMPLOYEE_WORKED_EMPLOYEE" Association="Self.FK_EMPLOYEE_WORKED_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="EMPLOYEE_BRANCH" EntitySet="EMPLOYEE_BRANCH" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUEST_MAKES_EMPLOYEE" Association="Self.FK_REQUEST_MAKES_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="REQUEST" EntitySet="REQUEST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SALE_SELLS_EMPLOYEE" Association="Self.FK_SALE_SELLS_EMPLOYEE">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="SALE" EntitySet="SALE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INCLUDE_PIDE_PRODUCT" Association="Self.FK_INCLUDE_PIDE_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="INCLUDE" EntitySet="INCLUDE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_INCLUDE_PIDE2_REQUEST" Association="Self.FK_INCLUDE_PIDE2_REQUEST">
+            <End Role="REQUEST" EntitySet="REQUEST" />
+            <End Role="INCLUDE" EntitySet="INCLUDE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OFFER_HAS2_PRODUCT" Association="Self.FK_OFFER_HAS2_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="OFFER" EntitySet="OFFER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SALE_PAID_BY_PAYMENT_" Association="Self.FK_SALE_PAID_BY_PAYMENT_">
+            <End Role="PAYMENT_METHOD" EntitySet="PAYMENT_METHOD" />
+            <End Role="SALE" EntitySet="SALE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_REQUEST_REQUESTS__SUPPLIER" Association="Self.FK_REQUEST_REQUESTS__SUPPLIER">
+            <End Role="SUPPLIER" EntitySet="SUPPLIER" />
+            <End Role="REQUEST" EntitySet="REQUEST" />
+          </AssociationSet>
+          <FunctionImport Name="PRODUCT_MORE_SALES">
+            <Parameter Name="P_NUMBER" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SALE_HISTORY_BY_EMPLOYEE">
+            <Parameter Name="P_ID_EMPLOYEE" Mode="In" Type="String" />
+            <Parameter Name="P_SALE_DATE" Mode="Out" Type="DateTime" />
+            <Parameter Name="P_PAY_AMOUNT" Mode="Out" Type="Decimal" />
+            <Parameter Name="P_ID_METHOD" Mode="Out" Type="Decimal" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="BodegaEntities">
+          <EntitySetMapping Name="ASSISTANCE">
+            <EntityTypeMapping TypeName="Model.ASSISTANCE">
+              <MappingFragment StoreEntitySet="ASSISTANCE">
+                <ScalarProperty Name="ID_ASSISTANCE" ColumnName="ID_ASSISTANCE" />
+                <ScalarProperty Name="ID_EMPLOYEE" ColumnName="ID_EMPLOYEE" />
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="EXIT_HOUR" ColumnName="EXIT_HOUR" />
+                <ScalarProperty Name="ENTRY_HOUR" ColumnName="ENTRY_HOUR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BRANCH">
+            <EntityTypeMapping TypeName="Model.BRANCH">
+              <MappingFragment StoreEntitySet="BRANCH">
+                <ScalarProperty Name="ID_BRANCH" ColumnName="ID_BRANCH" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="DISTRICT" ColumnName="DISTRICT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORY">
+            <EntityTypeMapping TypeName="Model.CATEGORY">
+              <MappingFragment StoreEntitySet="CATEGORY">
+                <ScalarProperty Name="ID_CATEGORY" ColumnName="ID_CATEGORY" />
+                <ScalarProperty Name="CATEGORY_NAME" ColumnName="CATEGORY_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DETAIL">
+            <EntityTypeMapping TypeName="Model.DETAIL">
+              <MappingFragment StoreEntitySet="DETAIL">
+                <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+                <ScalarProperty Name="ID_SALE" ColumnName="ID_SALE" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="SALE_PRICE" ColumnName="SALE_PRICE" />
+                <ScalarProperty Name="DISCOUNT" ColumnName="DISCOUNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEE">
+            <EntityTypeMapping TypeName="Model.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="ID_EMPLOYEE" ColumnName="ID_EMPLOYEE" />
+                <ScalarProperty Name="ID_TURN" ColumnName="ID_TURN" />
+                <ScalarProperty Name="MOTHER_LASTNAME" ColumnName="MOTHER_LASTNAME" />
+                <ScalarProperty Name="FATHER_LASTNAME" ColumnName="FATHER_LASTNAME" />
+                <ScalarProperty Name="UBIGEO" ColumnName="UBIGEO" />
+                <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="PHOTO" ColumnName="PHOTO" />
+                <ScalarProperty Name="E_MAIL" ColumnName="E_MAIL" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EMPLOYEE_BRANCH">
+            <EntityTypeMapping TypeName="Model.EMPLOYEE_BRANCH">
+              <MappingFragment StoreEntitySet="EMPLOYEE_BRANCH">
+                <ScalarProperty Name="ID_EMPLOYEE" ColumnName="ID_EMPLOYEE" />
+                <ScalarProperty Name="ID_BRANCH" ColumnName="ID_BRANCH" />
+                <ScalarProperty Name="ID_EMPLOYEE_BRANCH" ColumnName="ID_EMPLOYEE_BRANCH" />
+                <ScalarProperty Name="HIRE_DATE" ColumnName="HIRE_DATE" />
+                <ScalarProperty Name="DISMISS_DATE" ColumnName="DISMISS_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="INCLUDE">
+            <EntityTypeMapping TypeName="Model.INCLUDE">
+              <MappingFragment StoreEntitySet="INCLUDE">
+                <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+                <ScalarProperty Name="ID_REQUEST" ColumnName="ID_REQUEST" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OFFER">
+            <EntityTypeMapping TypeName="Model.OFFER">
+              <MappingFragment StoreEntitySet="OFFER">
+                <ScalarProperty Name="ID_OFFER" ColumnName="ID_OFFER" />
+                <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+                <ScalarProperty Name="OFFER1" ColumnName="OFFER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAYMENT_METHOD">
+            <EntityTypeMapping TypeName="Model.PAYMENT_METHOD">
+              <MappingFragment StoreEntitySet="PAYMENT_METHOD">
+                <ScalarProperty Name="ID_PAYMENT_METHOD" ColumnName="ID_PAYMENT_METHOD" />
+                <ScalarProperty Name="METHOD" ColumnName="METHOD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCT">
+            <EntityTypeMapping TypeName="Model.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="ID_PRODUCT" ColumnName="ID_PRODUCT" />
+                <ScalarProperty Name="ID_CATEGORY" ColumnName="ID_CATEGORY" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="UNIT_COST" ColumnName="UNIT_COST" />
+                <ScalarProperty Name="UNIT_PRICE" ColumnName="UNIT_PRICE" />
+                <ScalarProperty Name="STOCK" ColumnName="STOCK" />
+                <ScalarProperty Name="BRAND" ColumnName="BRAND" />
+                <ScalarProperty Name="EXPIRATION_DATE" ColumnName="EXPIRATION_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="REQUEST">
+            <EntityTypeMapping TypeName="Model.REQUEST">
+              <MappingFragment StoreEntitySet="REQUEST">
+                <ScalarProperty Name="ID_REQUEST" ColumnName="ID_REQUEST" />
+                <ScalarProperty Name="ID_SUPPLIER" ColumnName="ID_SUPPLIER" />
+                <ScalarProperty Name="ID_EMPLOYEE" ColumnName="ID_EMPLOYEE" />
+                <ScalarProperty Name="REQUEST_DATE" ColumnName="REQUEST_DATE" />
+                <ScalarProperty Name="DELIVERY_DATE" ColumnName="DELIVERY_DATE" />
+                <ScalarProperty Name="CONFORMITY" ColumnName="CONFORMITY" />
+                <ScalarProperty Name="TOTAL_AMOUNT" ColumnName="TOTAL_AMOUNT" />
+                <ScalarProperty Name="UNIT_NUMBER" ColumnName="UNIT_NUMBER" />
+                <ScalarProperty Name="REPRESENTATIVE" ColumnName="REPRESENTATIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SALE">
+            <EntityTypeMapping TypeName="Model.SALE">
+              <MappingFragment StoreEntitySet="SALE">
+                <ScalarProperty Name="ID_SALE" ColumnName="ID_SALE" />
+                <ScalarProperty Name="ID_EMPLOYEE" ColumnName="ID_EMPLOYEE" />
+                <ScalarProperty Name="ID_BRANCH" ColumnName="ID_BRANCH" />
+                <ScalarProperty Name="ID_PAYMENT_METHOD" ColumnName="ID_PAYMENT_METHOD" />
+                <ScalarProperty Name="SALE_DATE" ColumnName="SALE_DATE" />
+                <ScalarProperty Name="GIVEN_AMOUNT" ColumnName="GIVEN_AMOUNT" />
+                <ScalarProperty Name="CHANGE" ColumnName="CHANGE" />
+                <ScalarProperty Name="PAY_AMOUNT" ColumnName="PAY_AMOUNT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUPPLIER">
+            <EntityTypeMapping TypeName="Model.SUPPLIER">
+              <MappingFragment StoreEntitySet="SUPPLIER">
+                <ScalarProperty Name="ID_SUPPLIER" ColumnName="ID_SUPPLIER" />
+                <ScalarProperty Name="SUPPLIER_NAME" ColumnName="SUPPLIER_NAME" />
+                <ScalarProperty Name="SUPPLIER_ADDRESS" ColumnName="SUPPLIER_ADDRESS" />
+                <ScalarProperty Name="SUPPLIER_TELEPHONE" ColumnName="SUPPLIER_TELEPHONE" />
+                <ScalarProperty Name="SUPPLIEE_RUC" ColumnName="SUPPLIEE_RUC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TURN">
+            <EntityTypeMapping TypeName="Model.TURN">
+              <MappingFragment StoreEntitySet="TURN">
+                <ScalarProperty Name="ID_TURN" ColumnName="ID_TURN" />
+                <ScalarProperty Name="TURN1" ColumnName="TURN" />
+                <ScalarProperty Name="START_HOUR" ColumnName="START_HOUR" />
+                <ScalarProperty Name="END_HOUR" ColumnName="END_HOUR" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PRODUCT_MORE_SALES" FunctionName="Model.Store.PRODUCT_MORE_SALES" />
+          <FunctionImportMapping FunctionImportName="SALE_HISTORY_BY_EMPLOYEE" FunctionName="Model.Store.SALE_HISTORY_BY_EMPLOYEE" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

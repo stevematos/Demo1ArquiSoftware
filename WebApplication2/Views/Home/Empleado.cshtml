@@ -1,0 +1,162 @@
+﻿@{
+    ViewBag.Title = "  Ventana de venta ";
+}
+
+<div class="jumbotron">
+    <h2><strong>@ViewBag.Title</strong></h2>
+</div>
+<br />
+<p> <strong>Insertar el codigo del usuario:</strong></p>
+<div class="col-lg-6">
+    <div class="input-group">
+        <span class="input-group-btn">
+            <input type="text" class="form-control">
+            <button class="btn btn-default" type="button">Buscar</button>
+        </span>
+    </div>
+</div>
+
+<br />
+<div class="row">
+    <br />
+    <div class="col-md-4">
+        <h3><p class="text-center"><strong>@ViewBag.Message</strong></p></h3>
+        <br />
+         <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Costo Unitario</th>
+                    <th>Categoria</th>
+                    <th>Marca</th>
+                    <th>Fecha de expiracion</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (List<WebApplication2.Models.PRODUCT>)Session["Productos"])
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ID_PRODUCT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PRODUCT_NAME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UNIT_COST)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CATEGORY.CATEGORY_NAME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BRAND)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EXPIRATION_DATE)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+           
+        </table>
+
+        <br />
+        <h3>
+            MONTO TOTAL
+            <span class="label label-default"> @Session["Monto Total"]</span>
+        </h3>
+        <br />
+        @using (Html.BeginForm("Empleado3",""))
+        {
+        <button type="submit" class="pull-right btn btn-danger  btn-lg "> Guardar</button>
+        }
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+        <h3><p class="text-center"><strong>@ViewBag.Message2</strong></p></h3>
+        <br />
+        <table class="table table-inverse">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Costo Unitario</th>
+                    <th>Categoria</th>
+                    <th>Marca</th>
+                    <th>Fecha de expiracion</th>
+                    <th>Oferta</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (List<WebApplication2.Models.OFFER>)ViewBag.listaoferta)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PRODUCT.ID_PRODUCT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PRODUCT.PRODUCT_NAME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PRODUCT.UNIT_COST)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PRODUCT.CATEGORY.CATEGORY_NAME)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PRODUCT.BRAND)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PRODUCT.EXPIRATION_DATE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OFFER1)
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+
+        <button type="button" class="pull-center btn btn-danger ">Añadir</button>
+
+
+    </div>
+    </div>
+<br />
+<br />
+@using (Html.BeginForm())
+{
+    <p> <strong>Digitar el codigo del producto por añadir a la lista</strong></p>
+    <div class="col-lg-6">
+        <div class="input-group">
+            <span class="input-group-btn">
+                <input type="text" name="idProducto" class="form-control">
+                <button class="btn btn-default" type="submit">Añadir Producto</button>
+            </span>
+        </div>
+        <div class="input-group">
+            <span class="input-group-btn">
+                <input type="number" name="Cantidad" class="form-control">
+                <label>Cantidad del producto</label>
+                </span>
+        </div>
+    </div>
+}
+<br />
+<br />
+@using (Html.BeginForm("Empleado2","Home"))
+{
+<p> <strong>Digitar el codigo del producto por eliminar a la lista</strong></p>
+<div class="col-lg-6">
+    <div class="input-group">
+        <span class="input-group-btn">
+            <input type="text" name="idBorrar" class="form-control">
+            <button class="btn btn-default" type="submit">Eliminar Producto</button>
+        </span>
+    </div>
+</div>
+}
+<br />
+<br />
